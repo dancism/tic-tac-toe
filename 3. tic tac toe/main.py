@@ -2,38 +2,45 @@ import random
 
 
 def check_identical_ver(table):
+    global char
     for i in range(3):
         new_lst = table[i-1]
         if new_lst[0] == "-" or new_lst[1] == "-" or new_lst[2] == "-":
             pass
         else:
-            return new_lst[::-1] == new_lst[::1]
+            char = new_lst[1:2:]
+            return new_lst[1:] == new_lst[:-1]
 
 
 def check_identical_hor(table):
+    global char
     for i in range(3):
         new_lst = [table[0][i-1], table[1][i-1], table[2][i-1]]
         if new_lst[0] == "-" or new_lst[1] == "-" or new_lst[2] == "-":
             pass
         else:
-            return new_lst[::-1] == new_lst[::1]
+            char = new_lst[1:2:]
+            return new_lst[1:] == new_lst[:-1]
 
 
 def check_identical_x(table):
+    global char
     new_lst_x = [table[0][0], table[1][1], table[2][2]]
     if "-" in new_lst_x:
         pass
     else:
-        return new_lst_x[::-1] == new_lst_x[::1]
+        char = new_lst_x[1:2:]
+        return new_lst_x[1:] == new_lst_x[:-1]
 
 
 def check_identical_x2(table):
+    global char
     new_lst_x2 = [table[0][2], table[1][1], table[2][0]]
     if "-" in new_lst_x2:
         pass
     else:
-        char = new_lst_x2[:]
-        return new_lst_x2[::-1] == new_lst_x2[::1]
+        char = new_lst_x2[1:2:]
+        return new_lst_x2[1:] == new_lst_x2[:-1]
 
 
 def table_check(table):
@@ -111,7 +118,9 @@ def Game():
             print(*table, sep="\n")
             if check_identical_ver(table) or check_identical_hor(table) or check_identical_x(table) or check_identical_x2(table) == True:
                 game_on = False
-                print("Someone won")
+                print(char[0], player_1.mark)
+                if char[0] == player_1.mark:
+                    print("You won")
                 break
             if not table_check(table):
                 game_on = False
@@ -132,6 +141,9 @@ def Game():
             if check_identical_ver(table) or check_identical_hor(table) or check_identical_x(table) or check_identical_x2(table) == True:
                 print("Someone won")
                 game_on = False
+                if char[0] == "o":
+                    print("Bot won")
+                break
                 break
             if not table_check(table):
                 game_on = False
@@ -150,7 +162,8 @@ def Game():
                 table[e_row-1][e_column-1] = "x"
             print(*table, sep="\n")
             if check_identical_ver(table) or check_identical_hor(table) or check_identical_x(table) or check_identical_x2(table) == True:
-                print("Someone won")
+                if char[0] == "x":
+                    print("Bot won")
                 game_on = False
                 break
             if not table_check(table):
@@ -169,7 +182,8 @@ def Game():
             print(*table, sep="\n")
             if check_identical_ver(table) or check_identical_hor(table) or check_identical_x(table) or check_identical_x2(table) == True:
                 game_on = False
-                print("Someone won")
+                if char[0] == "o":
+                    print("You won")
                 break
             if not table_check(table):
                 game_on = False
