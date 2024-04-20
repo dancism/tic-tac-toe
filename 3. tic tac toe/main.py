@@ -7,7 +7,7 @@ def check_identical_ver(table):
         if new_lst[0] == "-" or new_lst[1] == "-" or new_lst[2] == "-":
             pass
         else:
-            return new_lst[1:] == new_lst[:-1]
+            return new_lst[::-1] == new_lst[::1]
 
 
 def check_identical_hor(table):
@@ -16,7 +16,7 @@ def check_identical_hor(table):
         if new_lst[0] == "-" or new_lst[1] == "-" or new_lst[2] == "-":
             pass
         else:
-            return new_lst[1:] == new_lst[:-1]
+            return new_lst[::-1] == new_lst[::1]
 
 
 def check_identical_x(table):
@@ -24,7 +24,7 @@ def check_identical_x(table):
     if "-" in new_lst_x:
         pass
     else:
-        return new_lst_x[1:] == new_lst_x[:-1]
+        return new_lst_x[::-1] == new_lst_x[::1]
 
 
 def check_identical_x2(table):
@@ -32,7 +32,8 @@ def check_identical_x2(table):
     if "-" in new_lst_x2:
         pass
     else:
-        return new_lst_x2[1:] == new_lst_x2[:-1]
+        char = new_lst_x2[:]
+        return new_lst_x2[::-1] == new_lst_x2[::1]
 
 
 def table_check(table):
